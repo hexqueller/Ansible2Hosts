@@ -1,5 +1,6 @@
 import sys
 import re
+import saver
 
 if len(sys.argv) != 2:
     print('Usage: python script.py <path_to_ansible_hosts_file>')
@@ -23,3 +24,5 @@ for line in hosts_ansible.split('\n'):
 
 for ip, hostname in hosts_list:
     print(f'{ip}\t{hostname}')
+
+saver.backuper("/etc/hosts.backup")
