@@ -13,3 +13,6 @@ def add_hosts(backup_file, hosts_list):
     with open("/etc/hosts", "a") as f:
         for ip, hostname in hosts_list:
             f.write(f"{ip}\t{hostname}\n")
+
+def restore(backup_file):
+    shutil.copy2(backup_file, "/etc/hosts")

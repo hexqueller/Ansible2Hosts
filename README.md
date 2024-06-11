@@ -9,7 +9,10 @@
 
 ## Использование
 ### Запуск программы
-`python script.py <path_to_ansible_hosts_file>`
+`sudo python main.py <path_to_ansible_hosts_file>`
+
+### Восстановление
+`sudo python main.py restore`
 
 ### Пример
 Если у вас есть файл `hosts` в формате Ansible со следующим содержимым:
@@ -27,4 +30,4 @@ python script.py hosts
 Который является файлом hosts в формате Linux.
 
 ## Версия
-`0.1`
+`0.3`

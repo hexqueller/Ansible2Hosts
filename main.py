@@ -2,13 +2,18 @@ import sys
 import re
 import saver
 
+backup_name = "/etc/hosts.backup"
+host_pattern = re.compile(r'^\s*(\S+)\s+ansible_host\s*=\s*(\S+)$')
+
 if len(sys.argv) != 2:
     print('Usage: python script.py <path_to_ansible_hosts_file>')
     sys.exit(1)
 
-backup_name = "/etc/hosts.backup"
+if sys.argv[1] == "restore":
+    saver.restore(backup_name)
+    sys.exit(1)
+    
 saver.backuper(backup_name)
-host_pattern = re.compile(r'^\s*(\S+)\s+ansible_host\s*=\s*(\S+)$')
 
 path_to_hosts = sys.argv[1]
 with open(path_to_hosts, 'r') as f:
