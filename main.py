@@ -6,6 +6,8 @@ if len(sys.argv) != 2:
     print('Usage: python script.py <path_to_ansible_hosts_file>')
     sys.exit(1)
 
+backup_name = "/etc/hosts.backup"
+saver.backuper(backup_name)
 host_pattern = re.compile(r'^\s*(\S+)\s+ansible_host\s*=\s*(\S+)$')
 
 path_to_hosts = sys.argv[1]
@@ -22,7 +24,7 @@ for line in hosts_ansible.split('\n'):
         ip = match.group(2)
         hosts_list.append((ip, hostname))
 
-for ip, hostname in hosts_list:
-    print(f'{ip}\t{hostname}')
+saver.add_hosts(backup_name, hosts_list)
 
-saver.backuper("/etc/hosts.backup")
+# for ip, hostname in hosts_list:
+#     print(f'{ip}\t{hostname}') # Debug info
