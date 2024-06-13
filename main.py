@@ -2,7 +2,7 @@ import sys
 import re
 import saver
 
-backup_name = "/etc/hosts.backup"
+backup_file = "/etc/hosts.backup"
 host_pattern = re.compile(r'^\s*(\S+)\s+ansible_host\s*=\s*(\S+)$')
 
 if len(sys.argv) != 2:
@@ -10,11 +10,10 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 if sys.argv[1] == "restore":
-    saver.restore(backup_name)
+    saver.restore(backup_file)
     sys.exit(1)
     
-saver.backuper(backup_name)
-
+saver.backuper(backup_file)
 path_to_hosts = sys.argv[1]
 with open(path_to_hosts, 'r') as f:
     hosts_ansible = f.read()
@@ -29,7 +28,4 @@ for line in hosts_ansible.split('\n'):
         ip = match.group(2)
         hosts_list.append((ip, hostname))
 
-saver.add_hosts(backup_name, hosts_list)
-
-# for ip, hostname in hosts_list:
-#     print(f'{ip}\t{hostname}') # Debug info
+saver.merge_files(hosts_list, path_to_hosts, backup_file)

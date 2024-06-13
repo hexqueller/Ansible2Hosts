@@ -1,5 +1,4 @@
 # Ansible2Hosts
-================
 
 Конвертер файлов hosts из формата Ansible в формат Linux
 
@@ -28,6 +27,3 @@ python script.py hosts
 192.168.1.101 server2
 ```
 Который является файлом hosts в формате Linux.
-
-## Версия
-`0.3`

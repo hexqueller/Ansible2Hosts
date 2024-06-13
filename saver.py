@@ -8,9 +8,10 @@ def backuper(backup_file):
     else:
         pass
 
-def add_hosts(backup_file, hosts_list):
-    shutil.copy2(backup_file, "/etc/hosts")
+def merge_files(hosts_list, path_to_hosts, backup_file):
+    restore(backup_file)
     with open("/etc/hosts", "a") as f:
+        f.write(f"\n#\n# This file is merged with: {path_to_hosts}\n# The backup is located in: {backup_file}\n#\n")
         for ip, hostname in hosts_list:
             f.write(f"{ip}\t{hostname}\n")
 
