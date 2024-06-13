@@ -12,11 +12,14 @@ if len(sys.argv) != 2:
 if sys.argv[1] == "restore":
     saver.restore(backup_file)
     sys.exit(1)
-    
+
 saver.backuper(backup_file)
 path_to_hosts = sys.argv[1]
 with open(path_to_hosts, 'r') as f:
     hosts_ansible = f.read()
+
+with open(backup_file, 'r') as f:
+    hosts_file = f.read()
 
 hosts_list = []
 for line in hosts_ansible.split('\n'):
@@ -26,6 +29,7 @@ for line in hosts_ansible.split('\n'):
     if match:
         hostname = match.group(1)
         ip = match.group(2)
-        hosts_list.append((ip, hostname))
+        if f"{ip}\t{hostname}" not in hosts_file:
+            hosts_list.append((ip, hostname))
 
 saver.merge_files(hosts_list, path_to_hosts, backup_file)
