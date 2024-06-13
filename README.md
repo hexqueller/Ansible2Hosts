@@ -19,10 +19,9 @@ server1 ansible_host=192.168.1.100
 server2 ansible_host=192.168.1.101
 ```
 Вы можете запустить программу, указав путь к этому файлу:
-python script.py hosts
-Программа выведет на экран:
+python main.py /path/to/hosts
+Программа запишет в файл /etc/hosts:
 ```bash
 192.168.1.100 server1
 192.168.1.101 server2
 ```
-Который является файлом hosts в формате Linux.

@@ -6,7 +6,7 @@ backup_file = "/etc/hosts.backup"
 host_pattern = re.compile(r'^\s*(\S+)\s+ansible_host\s*=\s*(\S+)$')
 
 if len(sys.argv) != 2:
-    print('Usage: python script.py <path_to_ansible_hosts_file>')
+    print('Usage: python main.py <path_to_ansible_hosts_file>')
     sys.exit(1)
 
 if sys.argv[1] == "restore":
