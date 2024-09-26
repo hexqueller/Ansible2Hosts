@@ -6,7 +6,8 @@ def backuper(backup_file):
         shutil.copy2("/etc/hosts", backup_file)
         print(f"Backup created: {backup_file}")
     else:
-        print(f"Backup already exists: {backup_file}")
+        pass
+        # print(f"Backup already exists: {backup_file}")
 
 def merge_files(hosts_list, paths_to_hosts, backup_file):
     # Восстановление из бэкапа перед объединением
@@ -19,4 +20,4 @@ def merge_files(hosts_list, paths_to_hosts, backup_file):
 
 def restore(backup_file):
     shutil.copy2(backup_file, "/etc/hosts")
-    print(f"Restored backup: {backup_file}")
+    # print(f"Restored backup: {backup_file}")
