@@ -7,11 +7,13 @@
 
 ## Использование
 ### Запуск программы
-`sudo python main.py <path_to_ansible_hosts_file> <another_file> ...`
-
+```bash
+sudo python main.py <path_to_ansible_hosts_file> <another_file> ...
+```
 ### Восстановление
-`sudo python main.py restore`
-
+```bash
+sudo python main.py restore
+```
 ### Пример
 Если у вас есть файл `hosts` в формате Ansible со следующим содержимым:
 ```bash
